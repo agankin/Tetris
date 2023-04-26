@@ -1,0 +1,22 @@
+{
+  "name": "tetris",
+  "version": "1.0.0",
+  "description": "Tetris game implementation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agankin/Tetris.git"
+  },
+  "keywords": [
+    "tetris"
+  ],
+  "author": "Andrei Gankin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agankin/Tetris/issues"
+  },
+  "homepage": "https://github.com/agankin/Tetris#readme"
+}
