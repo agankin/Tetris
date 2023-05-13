@@ -1,11 +1,11 @@
 const KeyCodes = Object.freeze({
-	Left: 37,
+    Left: 37,
 
-	Up: 38,
+    Up: 38,
 
-	Right: 39,
+    Right: 39,
 
-	Down: 40
+    Down: 40
 });
 
 export { KeyCodes };
