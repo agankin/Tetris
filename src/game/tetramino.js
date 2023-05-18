@@ -1,4 +1,4 @@
-import { RotationTransformer } from './RotationTransformer';
+import { RotationTransformer } from './rotation-transformer';
 
 class Tetramino {
     static #rotationTransformer = new RotationTransformer();

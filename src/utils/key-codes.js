@@ -1,4 +1,4 @@
-const KeyCodes = Object.freeze({
+const KEY_CODES = Object.freeze({
     Left: 37,
 
     Up: 38,
@@ -8,4 +8,4 @@ const KeyCodes = Object.freeze({
     Down: 40
 });
 
-export { KeyCodes };
+export { KEY_CODES };

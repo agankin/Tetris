@@ -1,7 +1,7 @@
-import { R0, R90, R180, R270, chainRotation } from './Rotations';
-import { Tetramino } from './Tetramino';
-import { getRandomColor } from './Colors';
-import { getOneOf } from '../utils/RandomUtils';
+import { R0, R90, R180, R270, chainRotation } from './rotations';
+import { Tetramino } from './tetramino';
+import { getRandomColor } from './colors';
+import { getOneOf } from '../utils/random-utils';
 
 function createRandomTetramino(cols) {
     return getOneOf(

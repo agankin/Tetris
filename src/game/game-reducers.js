@@ -1,5 +1,5 @@
-import { isInBounds, notIntersect, handleFilled } from './SquaresUtils';
-import { Game } from './Game';
+import { isInBounds, notIntersect, handleFilled } from './squares-utils';
+import { Game } from './game';
 
 function defaultCloneParams(game) {
     return {

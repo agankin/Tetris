@@ -1,4 +1,4 @@
-import { getOneOf } from '../utils/RandomUtils';
+import { getOneOf } from '../utils/random-utils';
 
 const Colors = Object.freeze({
     RED: Symbol('red'),

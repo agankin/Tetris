@@ -1,4 +1,4 @@
-import { R0, R90, R180, R270, chainRotation } from './Rotations';
+import { R0, R90, R180, R270, chainRotation } from './rotations';
 
 class RotationTransformer {
     static rotate(squares, rotation) {
