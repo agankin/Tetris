@@ -1,4 +1,4 @@
-import { R0, R90, R180, R270, chainRotation } from './rotations';
+import { R0, R90, R180, R270 } from './rotations.js';
 
 class RotationTransformer {
     static rotate(squares, rotation) {
@@ -17,9 +17,7 @@ class RotationTransformer {
     }
 
     static #getTransformer(rotation) {
-        const state = rotation.state;
-
-        switch (state) {
+        switch (rotation) {
             case R0:
                 return this.#transformR0;
 

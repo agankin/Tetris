@@ -1,20 +1,24 @@
-import { RotationTransformer } from './rotation-transformer';
+import { RotationTransformer } from './rotation-transformer.js';
 
 class Tetramino {
     static #rotationTransformer = new RotationTransformer();
     static #squareId = 0
-
+    
+    #type
     #squares
     #position
     #rotation
     #color
 
-    constructor(squares, position, rotation, color) {
+    constructor(type, squares, position, rotation, color) {
+        this.#type = type;
         this.#squares = squares;
         this.#position = position;
         this.#rotation = rotation;
         this.#color = color;
     }
+
+    get type() { return this.#type; }
 
     get squares() {
         const squaresRelativeCenter = RotationTransformer.rotate(this.#squares, this.#rotation);
@@ -32,53 +36,34 @@ class Tetramino {
     }
 
     moveLeft() {
-        const nextPosition = this.#clonePosition({col: this.#position.col - 1});
-        return this.#clone({position: nextPosition});
+        return this.#clone({ col: this.#position.col - 1 });
     }
 
     moveRight() {
-        const nextPosition = this.#clonePosition({col: this.#position.col + 1});
-        return this.#clone({position: nextPosition});
+        return this.#clone({ col: this.#position.col + 1 });
     }
 
     moveDown() {
-        const nextPosition = this.#clonePosition({row: this.#position.row + 1});
-        return this.#clone({position: nextPosition});
+        const nextPosition = this.#clonePosition();
+        return this.#clone({ row: this.#position.row + 1 });
     }
 
-    rotateClockWise() {
-        const nextRotation = this.#rotation.rotateClockWise();
-        return this.#clone({rotation: nextRotation});
+    rotateClockwise() {
+        return this.#clone({ rotation: this.#rotation.rotateClockwise() });
     }
 
-    rotateCounterClockWise() {
-        const nextRotation = this.#rotation.rotateCounterClockWise();
-        return this.#clone({rotation: nextRotation});
+    rotateCounterClockwise() {
+        return this.#clone({ rotation: this.#rotation.rotateCounterClockwise() });
     }
 
-    #clone(overrideParams) {
-        const {squares, position, rotation, color} = {
-            ...(this.#defaultCloneParams()),
-            ...overrideParams
+    #cloneWith({ row, col, rotation }) {
+        const clonePosition = {
+            row: row ?? this.#position.row,
+            col: col ?? this.#position.col
         };
+        const cloneRotation = rotation ?? this.#rotation;
 
-        return new Tetramino(squares, position, rotation, color);
-    }
-
-    #defaultCloneParams() {
-        return {
-            squares: this.#squares,
-            position: this.#position,
-            rotation: this.#rotation,
-            color: this.#color
-        }
-    }
-
-    #clonePosition(overrideParams) {
-        return {
-            ...this.#position,
-            ...overrideParams
-        }
+        return new Tetramino(this.#squares, clonePosition, cloneRotation, this.#color);
     }
 }
 
