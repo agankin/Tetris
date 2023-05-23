@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Tetris game implementation.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/game/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/agankin/Tetris/issues"
   },
-  "homepage": "https://github.com/agankin/Tetris#readme"
+  "homepage": "https://github.com/agankin/Tetris#readme",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
 }

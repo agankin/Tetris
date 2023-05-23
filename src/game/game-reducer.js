@@ -3,7 +3,7 @@ import { Game } from './game.js';
 import { MOVE_LEFT, MOVE_RIGHT, MOVE_DOWN, DROP, ROTATE_CLOCKWISE,
          ROTATE_COUNTER_CLOCKWISE, TICK } from './game-actions.js';
 
-function canMove(rows, cols, staticSquares, nextTetramino) {
+function canMoveTetramino(rows, cols, staticSquares, nextTetramino) {
     const nextTetraminoSquares = nextTetramino.squares;
 
     const isSquaresInBounds = isInBounds(rows, cols, nextTetraminoSquares);
@@ -32,7 +32,7 @@ function createMoveApplier(rows, cols) {
             return {};
 
         const nextTetramino = transformTetramino(tetramino);
-        const canMove = canMove(rows, cols, staticSquares, nextTetramino);
+        const canMove = canMoveTetramino(rows, cols, staticSquares, nextTetramino);
 
         if (canMove)
             return { tetramino: nextTetramino };
@@ -49,21 +49,21 @@ function createGameReducer(rows, cols, getNextTetramino, getScoreByFilledLines) 
     return (game, action) => {
         switch (action) { 
             case MOVE_LEFT:
-                return game.clone(applyMove(game, tetramino => tetramino.moveLeft()));
+                return game.cloneWith(applyMove(game, tetramino => tetramino.moveLeft()));
 
             case MOVE_RIGHT:
-                return game.clone(applyMove(game, tetramino => tetramino.moveRight()));
+                return game.cloneWith(applyMove(game, tetramino => tetramino.moveRight()));
 
             case MOVE_DOWN:
             case TICK:
             case DROP:
-                return game.clone(applyMove(game, tetramino => tetramino.moveDown(), completeTetramino));
+                return game.cloneWith(applyMove(game, tetramino => tetramino.moveDown(), completeTetramino));
 
             case ROTATE_CLOCKWISE:
-                return game.clone(applyMove(game, tetramino => tetramino.rotateClockwise()));
+                return game.cloneWith(applyMove(game, tetramino => tetramino.rotateClockwise()));
 
             case ROTATE_COUNTER_CLOCKWISE:
-                return game.clone(applyMove(game, tetramino => tetramino.rotateCounterClockwise()));
+                return game.cloneWith(applyMove(game, tetramino => tetramino.rotateCounterClockwise()));
         }
     };
 }

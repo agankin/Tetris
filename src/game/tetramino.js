@@ -21,7 +21,7 @@ class Tetramino {
     get type() { return this.#type; }
 
     get squares() {
-        const squaresRelativeCenter = RotationTransformer.rotate(this.#squares, this.#rotation);
+        const squaresRelativeCenter = RotationTransformer.rotate(this.#squares, this.#rotation.currentRotation);
 
         const {row: posRow, col: posCol} = this.#position;
         const toGameSquare = square => ({
@@ -36,24 +36,23 @@ class Tetramino {
     }
 
     moveLeft() {
-        return this.#clone({ col: this.#position.col - 1 });
+        return this.#cloneWith({ col: this.#position.col - 1 });
     }
 
     moveRight() {
-        return this.#clone({ col: this.#position.col + 1 });
+        return this.#cloneWith({ col: this.#position.col + 1 });
     }
 
     moveDown() {
-        const nextPosition = this.#clonePosition();
-        return this.#clone({ row: this.#position.row + 1 });
+        return this.#cloneWith({ row: this.#position.row + 1 });
     }
 
     rotateClockwise() {
-        return this.#clone({ rotation: this.#rotation.rotateClockwise() });
+        return this.#cloneWith({ rotation: this.#rotation.rotateClockwise() });
     }
 
     rotateCounterClockwise() {
-        return this.#clone({ rotation: this.#rotation.rotateCounterClockwise() });
+        return this.#cloneWith({ rotation: this.#rotation.rotateCounterClockwise() });
     }
 
     #cloneWith({ row, col, rotation }) {
@@ -63,7 +62,7 @@ class Tetramino {
         };
         const cloneRotation = rotation ?? this.#rotation;
 
-        return new Tetramino(this.#squares, clonePosition, cloneRotation, this.#color);
+        return new Tetramino(this.#type, this.#squares, clonePosition, cloneRotation, this.#color);
     }
 }
 

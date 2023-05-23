@@ -34,9 +34,9 @@ class Game {
     }
 
     cloneWith({ staticSquares, tetramino, score }) {
-        const cloneStaticSquares = this.staticSquares ?? staticSquares;
-        const cloneTetramino = this.tetramino ?? tetramino;
-        const cloneScore = this.score ?? score;
+        const cloneStaticSquares = staticSquares ?? this.#staticSquares;
+        const cloneTetramino = tetramino ?? this.#tetramino;
+        const cloneScore = score ?? this.#score;
 
         return new Game(cloneStaticSquares, cloneTetramino, cloneScore);
     }
